@@ -1,7 +1,8 @@
 import "./App.css";
 import React from 'react';
 
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
 
@@ -24,9 +25,7 @@ const Navbar = () => {
                         اضافه کردن یوزر
                     </button>
 
-                    <Link to="/adduser/2">
-                        <button>ویرایش کردن یوزر </button>
-                    </Link>
+                  
                     <ul className="nav-list">
                         {/* NavLink هم همین کار رو می‌کنه، اما وقتی مسیر فعال باشه، یه کلاس مخصوص (active) بهش اضافه می‌کنه. */}
                         <li><NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/"> Home </NavLink></li>
