@@ -6,7 +6,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 const Navbar = () => {
 
     const Navigate = useNavigate();
-    console.log("annnnii");
 
     return (
         <div className="App">

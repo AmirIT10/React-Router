@@ -2,16 +2,30 @@
 import React, { useState } from 'react';
 import './Contact.css';
 import Navbar from './Navbar';
+import axios from 'axios';
 
 function Contact() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+   const [inputUser , setInputUser] = useState({
+    userName : "",
+    userEmail : "",
+    userMessage : "",
+   })
     const [submitted, setSubmitted] = useState(false);
 
+    const submiteUser = async () =>{
+        try{
+            const respons = await axios.post('https://jsonplaceholder.typicode.com/users' , inputUser)
+            console.log(respons)
+        }
+        catch(err){
+            console.error("خطا در دریافت اطلاعات " , err)
+        }
+    }
+
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmitted(true);
+        submiteUser();
     };
 
     return (
@@ -24,8 +38,8 @@ function Contact() {
                     <input
                         type="text"
                         id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={inputUser.userName}
+                        onChange={(e) => setInputUser({...inputUser , userName: e.target.value})}
                         required
                     />
                 </div>
@@ -34,8 +48,8 @@ function Contact() {
                     <input
                         type="email"
                         id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={inputUser.userEmail}
+                        onChange={(e) => setInputUser({...inputUser,userEmail: e.target.value})}
                         required
                     />
                 </div>
@@ -43,8 +57,8 @@ function Contact() {
                     <label htmlFor="message">پیام</label>
                     <textarea
                         id="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        value={inputUser.userMessage}
+                        onChange={(e) => setInputUser({...inputUser,userMessage: e.target.value})}
                         required
                     ></textarea>
                 </div>
